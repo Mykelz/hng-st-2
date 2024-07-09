@@ -87,7 +87,8 @@ exports.addUserToOrg = async (req, res, next) =>{
         const userId = req.body.userId;
         const orgId = req.params.orgId;
         const organisation = await Organization.findByPk(orgId)
-        const addUser = await organisation.addUser(userId)
+        const user = await User.findByPk(userId)
+        const addUser = await organisation.addUser(user)
 
         res.status(200).json({
                 status: "success",

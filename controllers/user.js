@@ -24,6 +24,13 @@ exports.registerUser = async (req, res, next) => {
             password: hashedPw,
             phone: phone
         })
+
+        const organization = await Organization.create({
+          name: `${firstName}'s Organisation`,
+          description: '',
+        });
+    
+        await user.addOrganization(organization);
         
         console.log(user, 'user details')
 

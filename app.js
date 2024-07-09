@@ -26,17 +26,10 @@ app.use((error, req, res, next) =>{
 const UserOrg = sequelize.define('UserOrganization', {});
 
 
-User.hasMany(Organization, {onDelete: 'CASCADE'});
-Organization.hasMany(User);
-User.belongsToMany(Organization, { through: UserOrg});
+User.belongsToMany(Organization, { through: UserOrg });
+Organization.belongsToMany(User, { through: UserOrg });
 
-
-User.afterCreate(async (user, options) => {
-  const organization = await user.createOrganization({
-    name: `${user.firstName}'s Organisation`,
-  });
-  await organization.addUser(user)
-});
+// 
 
 
 sequelize.sync()
