@@ -46,7 +46,7 @@ sequelize.sync()
 
 
 
-
+module.exports = app;
 
 // "firstName": "jeliil",
 // "lastName": "ada",
